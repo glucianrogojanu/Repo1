@@ -1,1 +1,1 @@
-# repo1
+# In fisierul Informatii.txt aveti tot ce este necesar!
