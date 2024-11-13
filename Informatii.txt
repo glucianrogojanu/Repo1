@@ -1,0 +1,53 @@
+URMARESTE PASII URMATORI PENTRU A PUTEA RULA APLICATIA:
+   1. Conexiunea cu baza de date.
+      a) Intram in XAMPP si pornim Apache si MySQL, dupa care intram pe "localhost/phpmyadmin" si creeam baza de date "surveys1".
+      b) In "app/.env"  modificam linia  DB_DATABASE=surveys   in   DB_DATABASE=surveys1
+   2. Rulam Laravel.
+      a) Deschidem un terminal in interiorul "app" si scriem urmatoarele comenzi:  
+            php artisan migrate
+            php artisan serve
+         Atentie: In acest terminal ruleaza partea de Laravel, asa ca nu vom mai umbla aici.
+   3. Rulam React.
+      a) Creeam un nou terminal in interirul "app/react" si scriem urmatoarele comenzi:
+            npm install
+            npm run dev
+         Atentie: In acest terminal ruleaza partea de React, asa ca nu vom mai umbla aici.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LUCRURI DE STIUT DESPRE APLICATIE:
+   1. Fiecare utilizator logat:
+        - Poate creea un produs(Pagina aferenta se afla in app/react/src/pages/SurveysForm.jsx) insotit de detalii legat de produsul respectiv + intrebarile aferente pentru viitoare review-uri.
+        - Poate edita sau sterge un produs ce ii apartine.
+        - Poate face un review unui produs ce nu ii apartine.
+   2. Diferiti termeni:
+         Survey = Produs.
+         Question = Intrebare atasata fiecarui produs la momentul creearii/editarii acestuia.
+         Answer = Review dat de un utilizator unui produs ce nu ii apartine.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+APLCATIA IN SINE:
+   1. Pagina "LOGIN"(Aflata in app/react/src/pages/Login.jsx):
+      a) Nu introducem date in ambele field-uri => Ne afiseaza eroare pe ecran.
+      b) Introducem date in ambele field-uri:
+         i) Datele nu respecta conditiile de validare => Ne afiseaza eroare pe ecran.
+         ii) Datele respecta conditiile de validare dar nu corespund unui cont => Ne afiseaza eroare pe ecran.
+         iii) Datele respecta conditiile de validare si corespund unui cont => Ne logheaza automat in cont si suntem redirectionati catre "localhost:3000".
+   2. Pagina "SIGN UP"(Aflata in app/react/src/pages/Signup.jsx):
+      a) Nu introducem date in toate field-urile => Ne afiseaza eroare pe ecran.
+      b) Introducem date in toate field-urile:
+         i) Datele nu respecta conditiile de validare => Ne afiseaza eroare pe ecran.
+         iii) Datele respecta conditiile de validare => Ne creeaza cont, ne logheaza automat si suntem redirectionati catre "localhost:3000".
+   Dupa ce am fost redirectionati pe "localhost:3000":
+     Avem 3 functionalitati majore:
+        1. Ne aflam pe pagina "DASHBOARD"(Aflata in app/react/src/pages/Dashboard.jsx).
+           - Aceasta pagina contine 4 informatii legat de utilizatorul logat:
+              a) Surveys created = Toate produsele creeate de utilizatorul logat.
+              b) Answers received = Numarul total de review-uri primite la toate produsele utilizatorului logat.
+              c) Latest survey = Ultimul produs creeat.(In caz ca nu exista, vom primi um mesaj corespunzator)
+              d) Latest answers = Ne afiseaza ultimele 5 review-uri primite.(In caz ca nu exista, vom primi um mesaj corespunzator)
+        2. Putem sa navigam pe pagina "SURVEYS"(Aflata in app/react/src/pages/Surveys.jsx).
+           a) In partea de dreapta sus avem butonul "Create new", de unde putem creea un produs nou.
+           b) In partea centrala a paginii ne sunt afisate cate 2 pe pagina, toate produsele existente, indiferent daca au fost creeate sau nu de utilizatorul logat.
+              i) Daca produsul este al nostru, il putem edita sau sterge.
+              ii) Daca produsul nu este al nostru, putem sa ii facem un review.
+        3. Putem sa facem "logout" de pe butonul de sus dreapta, unde de altfel ne sunt si afisate informatii despre utilizatorul logat.
+
+
